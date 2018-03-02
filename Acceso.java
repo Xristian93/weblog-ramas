@@ -1,42 +1,36 @@
+import java.util.Arrays;
+
 public class Acceso
 {
-    private int ano;
-    private int mes;
-    private int dia;
-    private int hora;
-    private int minutos;
+    private String[] arrayDatos;
     
-    public Acceso(int ano, int mes, int dia, int hora, int minutos)
+    public Acceso(String datos)
     {
-        this.ano = ano;
-        this.mes = mes;
-        this.dia = dia;
-        this.hora = hora;
-        this.minutos = minutos;
+        arrayDatos = datos.split(" ");
     }
     
     public int getAno() 
     {
-        return ano;
+        return Integer.parseInt(arrayDatos[0]);
     }
     
     public int getMes()
     {
-        return mes;
+        return Integer.parseInt(arrayDatos[1]);
     }
     
     public int getDia()
     {
-        return dia;
+        return Integer.parseInt(arrayDatos[2]);
     }
     
     public int getHora()
     {
-        return hora;
+        return Integer.parseInt(arrayDatos[3]);
     }
     
     public int getMinutos()
     {
-        return minutos;
+        return Integer.parseInt(arrayDatos[4]);
     }
 }
