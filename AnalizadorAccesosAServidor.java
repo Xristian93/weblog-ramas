@@ -2,15 +2,30 @@ import java.io.File;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/**
+ * Esta clase sirve para Analizar accesos al servidor de datos.
+ *
+ * @author (Cristian de la Fuente Garcia)
+ * @version (23/02/2018)
+ */
 public class AnalizadorAccesosAServidor
 {
     private ArrayList<Acceso> accesos;
 
+    /**
+     * Constructor para objetos de la clase AnalizadorAccesosAServidor
+     */
     public AnalizadorAccesosAServidor() 
     {
         accesos = new ArrayList<>();
     }
 
+    /**
+     * Este metodo analiza un archivo (tipo String) que le pasamos como parametro
+     * 
+     * @param  String archivo
+     * @return    nada
+     */
     public void analizarArchivoDeLog(String archivo)
     {
         accesos.clear();
@@ -18,23 +33,22 @@ public class AnalizadorAccesosAServidor
         try {
             Scanner sc = new Scanner(archivoALeer);
             while (sc.hasNextLine()) {
-                String lineaLeida = sc.nextLine();
-                String cadena = lineaLeida;
-                if (lineaLeida.contains("[")){
-                    int posicionPrimerCorchete = lineaLeida.indexOf("[");
-                    int posicionSegundoCorchete = lineaLeida.indexOf("]");
-                    cadena = lineaLeida.substring(posicionPrimerCorchete,posicionSegundoCorchete);
-                }
-                Acceso accesoActual = new Acceso(cadena);               
+                String lineaLeida = sc.nextLine();    
+                Acceso accesoActual = new Acceso(lineaLeida);               
                 accesos.add(accesoActual);
             }
             sc.close();
-        }
-        catch (Exception e) {
+        }      catch (Exception e) {
             System.out.println("Ocurrio algun error al leer el archivo.");
         }
     }
 
+    /**
+     * Este método devuelve la hora a la que se producen mas accesos al servidor.
+     * 
+     * @param  ninguno
+     * @return    int de la hora a la que se producen mas accesos
+     */
     public int obtenerHoraMasAccesos() 
     {
         int valorADevolver = -1;
