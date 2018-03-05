@@ -26,7 +26,7 @@ public class Acceso
             direccionIP = datos.substring(0,posicionPrimerCorchete).trim();
             cadena = datos.substring(posicionPrimerCorchete,posicionSegundoCorchete);
             paginaWeb = datos.substring(posicionSegundoCorchete + 1,posicionPaginaWeb + 4).trim();
-            codigoHTTP =  datos.substring(posicionPaginaWeb,datos.length()).trim();
+            codigoHTTP =  datos.substring(datos.length() - 3).trim();
         }
         arrayDatos = new String[8];
         arrayDatos[0] = direccionIP;
@@ -120,7 +120,7 @@ public class Acceso
      * @param  ninguno
      * @return    int del codigo HTTP
      */
-    public int getcodigoHTTP(){
+    public int getCodigoHTTP(){
         return Integer.parseInt(arrayDatos[7]);
     }
 }
