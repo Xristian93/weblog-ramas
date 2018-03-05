@@ -1,6 +1,8 @@
 import java.io.File;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.HashMap;
 
 /**
  * Esta clase sirve para Analizar accesos al servidor de datos.
@@ -78,7 +80,32 @@ public class AnalizadorAccesosAServidor
 
     public String paginaWebMasSolicitada() 
     {
-        return "";
+        String paginaWebMasAccesos = null;
+        int totalAccesos = 0;
+        HashSet<String> coleccionPaginasWeb = new HashSet<>();
+        HashMap<String, ArrayList<Acceso>> coleccionMap = new HashMap<>();
+
+        if (accesos.size() > 0){
+            for (Acceso accesoActual : accesos){
+                coleccionPaginasWeb.add(accesoActual.getPaginaWeb());
+            }
+            for (String paginaActual : coleccionPaginasWeb){
+                ArrayList<Acceso> arrayMap = new ArrayList<>();
+                for (int i = 0; i < accesos.size(); i++){
+                    if(paginaActual.equals(accesos.get(i).getPaginaWeb())){
+                        arrayMap.add(accesos.get(i));
+                    }
+                }
+                coleccionMap.put(paginaActual, arrayMap);
+            }
+            for (ArrayList<Acceso> accesoActual : coleccionMap.values()){
+                if (accesoActual.size() >= totalAccesos){
+                    paginaWebMasAccesos = accesoActual.get(0).getPaginaWeb();
+                    totalAccesos = accesoActual.size();
+                }
+            }
+        }
+        return paginaWebMasAccesos;
     }
 
     public String clienteConMasAccesosExitosos()
