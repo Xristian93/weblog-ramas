@@ -156,8 +156,4 @@ public class AnalizadorAccesosAServidor
         
         return clienteMasAccesos;
     }
-    
-    public ArrayList<Acceso> mostrar(){
-        return accesos;
-    }
 }
